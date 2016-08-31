@@ -4,13 +4,14 @@ var correctCounter = 0;
 var wrongCounter = 0;
 
 //create questions
+//counter is the way we are logging what questions to loop through.  the counter starts at 0 and as each answer is chosen the number is incremented by 1 to get the next question in the question array
 console.log("Questions asked: " + counter);
 
 var questions =
 [
   {
   //question 1
-  question: "On the surface, the world portrayed in this novel is perfect: however, it's probably the most nightmarish scenario  imaginable.",
+  question: "On the surface, the world protrayed in this novel is perfect: however, it's probably the most nightmarish senerio imaginable.",
   choices: ['The Sleeper Awakes', 'WE', '1984', 'Brave New World'],
   answer: 0,
   answerText: "Brave New World",
@@ -26,7 +27,7 @@ var questions =
   },
   {
   //question 3
-  question: "What bleak satire of Stalinism takes place in a glass city state and happens 1000 yrs after the 200 year war?",
+  question: "A bleak satire of Stalinism set in a class city state set 1000 yrs after the 200 year war.",
   choices: ['WE', 'THX 1138', 'Equilibrium', 'The Time Machine'],
   answer: 2,
   answerText: "WE", 
@@ -50,14 +51,14 @@ var questions =
   },
   {
   //question 6
-  question: "What Eastern European play coined the colloquial term for mass produced, artificially intelligent beings .",
-  choices: ['Rossums Universal Robots', 'Metropolis', 'Do Androids Dream of Electric Sheep', 'Animal Farm'],
+  question: "That Eastern European play coined the coloquial term for mass produced artificaly inteligent beings.",
+  choices: ['Rossums Universal Robots', 'Metroplis', 'Do Andriods Dream of Electric Sheep', 'Animal Farm'],
   answer: 1,
   answerText: "Rossums Universal Robots",
   image: '<img src="assets/images/rur.jpg"/>',
   },
 ];
-//timer object
+//creates timer object
 var timer =
 {
   start: 30,
@@ -86,7 +87,7 @@ var timer =
       countDown = setInterval(timer.increment, 1000);
   },
 };
-//start game function - used only once, after clicking the start button
+//creates the start game function - only used one time after clicking the start button to start off the first question
 $('#startGame').click(function(){
       $('#startGame').hide();
       createQuestion();
@@ -96,9 +97,9 @@ $('#startGame').click(function(){
 function createQuestion() {
   timer.run();
 
-  // hides unused button
+  // this hides the buttons we aren't using
   $('.continueButton').hide();
-  //shows  buttons being
+  //this shows the buttons we are using
   $('#question').show();
   $('.answerButton').show();
 
@@ -109,7 +110,7 @@ function createQuestion() {
     $('#answer' + i).html(questions[counter].choices[i]);
   };
 };
-//continue button
+//creates continue button
 var continueButton = {
   buttonText: 'Continue...',
   createButton: function(){
@@ -122,7 +123,7 @@ var continueButton = {
     $('.continueButton').hide();
     timer.stop();
     timer.reset();
-  //createQuestion function stops when the counter # gets to 6
+  //this stops the createQuestion function when the counter # gets to 6
     if(counter === 6){
       finalPage()
     }else {
@@ -132,7 +133,7 @@ var continueButton = {
 
 };
 
-//onclick function for answers
+//creates the onclick function for answers
 $('.answerButton').click(function()
 {
   $('#question').hide();
@@ -171,7 +172,7 @@ $('.answerButton').click(function()
 });
 
 
-//startOver 
+//creates the startOver button on the last page
 var restartButton = {
   buttonText: 'Start Over!',
   createButton: function(){
@@ -184,17 +185,17 @@ var restartButton = {
   }),
 
 };
-//final score 
+//creates the final score tally page
 function finalPage() {
   $('.answerButton').hide();
   if (correctCounter > 4){
-    $('.endTitle').html("Finished");
-    $('#endSubText').html("Well done!!!");
+    $('.endTitle').html("Mission Accomlished");
+    $('#endSubText').html("Above Average");
   }else if((correctCounter = 3) || (correctCounter = 4)){
     $('.endTitle').html("Satisfactory");
     $('#endSubText').html("Sub-par");
   }else{
-    $('.endTitle').html("VERY DISAPPOINTING...");
+    $('.endTitle').html("VERY DISAPPOINTING!");
     $('#endSubText').html("No excuse")
   };
 
